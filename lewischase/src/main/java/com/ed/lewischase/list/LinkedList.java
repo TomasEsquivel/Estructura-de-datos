@@ -155,10 +155,10 @@ public class LinkedList<T> implements ListADT{
     @Override
     public String toString() {
         Iterator<T> iterador = iterator();
-        String mensaje = "";
+        StringBuilder mensaje = new StringBuilder();
         while(iterador.hasNext()){
-            mensaje += iterador.next().toString() + "\n";
+            mensaje.append(iterador.next().toString()).append("\n");
         }
-        return mensaje;
+        return mensaje.toString();
     }
 }
