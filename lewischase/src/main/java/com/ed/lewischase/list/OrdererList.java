@@ -10,6 +10,15 @@ public class OrdererList<T> implements OrderedListADT<T> {
     protected LinearNode<T> front, rear;
     protected int count;
 
+    public OrdererList(){
+        front = rear = null;
+        count = 0;
+    }
+
+    public OrdererList(T elem){
+        add(elem);
+    }
+
     //Pensando que el elemento de un nodo es un número entero
     //la lista se va a ordenar de menor a mayor.
     @Override
