@@ -2,6 +2,7 @@ package com.ed.lewischase.list;
 
 import com.ed.lewischase.LinkedNode.LinearNode;
 
+import javax.sound.sampled.Line;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -199,5 +200,21 @@ public class OrdererList<T> implements OrderedListADT<T> {
             mensaje.append(iterador.next().toString()).append("\n");
         }
         return mensaje.toString();
+    }
+
+    public void removeDuplicates() throws EmptyListException {
+        if (isEmpty()) throw new EmptyListException();
+        if(count > 1){
+            LinearNode<T> current = front;
+
+            while (current.getNext() != null) {
+                if (current.getElement().equals(current.getNext().getElement())) {
+                    current.setNext(current.getNext().getNext());
+                    count--;
+                } else {
+                    current = current.getNext();
+                }
+            }
+        }
     }
 }
