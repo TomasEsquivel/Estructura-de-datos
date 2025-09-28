@@ -196,4 +196,40 @@ public class UnorderedList<T> implements UnorderedListADT<T>{
         }
         return mensaje.toString();
     }
+
+    public void removeDuplicates() throws EmptyListException {
+        if (isEmpty()) throw new EmptyListException();
+
+        DoubleNode<T> current = front;
+
+        while (current != null) {
+            DoubleNode<T> runner = current.getNext();
+
+            while (runner != null) {
+                if (runner.getElement().equals(current.getElement())) {
+
+                    DoubleNode<T> next = runner.getNext();
+
+                    if (runner.getPrevious() != null) {
+                        runner.getPrevious().setNext(runner.getNext());
+                    }
+                    if (runner.getNext() != null) {
+                        runner.getNext().setPrevious(runner.getPrevious());
+                    }
+
+                    if (runner == rear) {
+                        rear = runner.getPrevious();
+                    }
+
+                    count--;
+                    runner = next;
+                } else {
+                    runner = runner.getNext();
+                }
+            }
+            current = current.getNext();
+        }
+    }
+
+
 }
